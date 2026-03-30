@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Symulator wyrywania włosów z dolnej części ucha</title>
+  <title>Symulator wyrywania włosów z płatka ucha</title>
   <style>
     body {
       margin: 0;
@@ -27,7 +27,7 @@
   </style>
 </head>
 <body>
-  <canvas id="game" width="400" height="400"></canvas>
+  <canvas id="game" width="500" height="500"></canvas>
   <div id="counter">Wyrwane włosy: 0</div>
 
   <script>
@@ -39,26 +39,39 @@
     let pulled = 0;
 
     function generateHairs() {
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 30; i++) {
         hairs.push({
-          x: 200 + Math.random() * 80 - 40,
-          y: 260 + Math.random() * 80 - 40,
-          length: 20 + Math.random() * 20,
+          x: 320 + Math.random() * 30 - 15,
+          y: 330 + Math.random() * 20 - 10,
+          length: 15 + Math.random() * 15,
           pulled: false
         });
       }
     }
 
-    function drawEar() {
+    function drawHead() {
+      // głowa
       ctx.fillStyle = '#f2c6a0';
       ctx.beginPath();
-      ctx.arc(200, 200, 100, 0, Math.PI * 2);
+      ctx.arc(250, 220, 150, 0, Math.PI * 2);
       ctx.fill();
 
-      // dolna część ucha
+      // oko
+      ctx.fillStyle = '#000';
+      ctx.beginPath();
+      ctx.arc(200, 200, 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // ucho
       ctx.fillStyle = '#e0a97f';
       ctx.beginPath();
-      ctx.arc(200, 280, 40, 0, Math.PI * 2);
+      ctx.ellipse(350, 260, 40, 70, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // płatek ucha
+      ctx.fillStyle = '#d9956c';
+      ctx.beginPath();
+      ctx.arc(350, 340, 25, 0, Math.PI * 2);
       ctx.fill();
     }
 
@@ -98,7 +111,7 @@
 
     function render() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawEar();
+      drawHead();
       drawHairs();
     }
 
