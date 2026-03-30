@@ -43,32 +43,28 @@
         hairs.push({
           x: 320 + Math.random() * 30 - 15,
           y: 330 + Math.random() * 20 - 10,
-          length: 15 + Math.random() * 15,
+          length: 30 + Math.random() * 25, // większe włosy
           pulled: false
         });
       }
     }
 
     function drawHead() {
-      // głowa
       ctx.fillStyle = '#f2c6a0';
       ctx.beginPath();
       ctx.arc(250, 220, 150, 0, Math.PI * 2);
       ctx.fill();
 
-      // oko
       ctx.fillStyle = '#000';
       ctx.beginPath();
       ctx.arc(200, 200, 5, 0, Math.PI * 2);
       ctx.fill();
 
-      // ucho
       ctx.fillStyle = '#e0a97f';
       ctx.beginPath();
       ctx.ellipse(350, 260, 40, 70, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // płatek ucha
       ctx.fillStyle = '#d9956c';
       ctx.beginPath();
       ctx.arc(350, 340, 25, 0, Math.PI * 2);
@@ -77,6 +73,7 @@
 
     function drawHairs() {
       ctx.strokeStyle = '#000';
+      ctx.lineWidth = 3; // grubsze włosy
       hairs.forEach(h => {
         if (!h.pulled) {
           ctx.beginPath();
@@ -98,7 +95,7 @@
           const dy = my - h.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 10) {
+          if (dist < 20) { // większy hitbox
             h.pulled = true;
             pulled++;
           }
